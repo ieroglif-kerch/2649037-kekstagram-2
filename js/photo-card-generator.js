@@ -8,8 +8,9 @@ const Likes = {
   MIN: 15,
   MAX: 200
 };
+
 const AVATAR_MAX_NUM = 6;
-const photoData = getPhotoData();
+const photoData = getPhotoData;
 
 // создаем переменные
 const photosDataBase = [];
