@@ -1,3 +1,4 @@
+import {drawBigPicture} from './draw-big-pic';
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
 const pictureFragment = document.createDocumentFragment();
@@ -15,6 +16,7 @@ const renderPhoto = (pictureData) => {
   picture.querySelector('.picture__likes').textContent = pictureData.likes;
   picture.querySelector('.picture__comments').textContent = pictureData.comments.length;
 
+  pictureImg.addEventListener('click', () => drawBigPicture(pictureData));
   return picture;
 };
 
