@@ -1,30 +1,29 @@
-import {createPhotoCard} from './photo-card-generator';
-
-const photoCardsData = createPhotoCard();
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
-
 const pictureFragment = document.createDocumentFragment();
+
 /**
- * Функция принимает информации о фотографии и записывает в
- * соответствующую графу.
+ * Принимает объект с данными фотографии и возвращает DOM-элемент карточки.
  * @param {object} pictureData
+ * @returns picture
  */
-const photoDataFiller = (pictureData) => {
+const renderPhoto = (pictureData) => {
   const picture = pictureTemplate.cloneNode(true);
   const pictureImg = picture.querySelector('.picture__img');
-  const pictureCommentsCount = picture.querySelector('.picture__comments');
-  const pictureLikesCount = picture.querySelector('.picture__likes');
-
   pictureImg.src = pictureData.url;
   pictureImg.alt = pictureData.description;
-  pictureLikesCount.textContent = pictureData.likes;
-  pictureCommentsCount.textContent = pictureData.comments.length;
+  picture.querySelector('.picture__likes').textContent = pictureData.likes;
+  picture.querySelector('.picture__comments').textContent = pictureData.comments.length;
 
-  pictureFragment.append(picture);
+  return picture;
 };
 
-photoCardsData.forEach(photoDataFiller);
+const renderPhotos = (pictures) => {
+  pictures?.forEach((picture) => {
+    pictureFragment.append(renderPhoto(picture));
+  });
 
-export const pictureDraw = () => picturesContainer.append(pictureFragment);
+  picturesContainer.append(pictureFragment);
+};
 
+export {renderPhotos};
