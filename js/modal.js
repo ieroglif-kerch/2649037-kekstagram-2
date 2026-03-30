@@ -37,6 +37,8 @@ function closeModal(modalElement) {
   modalElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeyDown);
+  //Сбрасываем выбранный файл.
+  document.querySelector('.img-upload__input').value = '';
   activeModal = null;
 }
 
